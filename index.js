@@ -15,7 +15,7 @@ recognition.onstart=function(){
 
 //when user finishes talking;
 recognition.onspeechend=function(){
-    instruction.text("Speech Recognition has ended")
+    instructions.text("Speech Recognition has ended")
 }
 recognition.onerror=function(e){
     if(event.error == 'no-speech') {
@@ -24,9 +24,14 @@ recognition.onerror=function(e){
 }
 //when results are returned;
 recognition.onresult=function(e){
-    var transcript = e.results[0][0].transcript;
-    notes.textContent +=transcript;
-    notes.value =notes.textContent
+    var current = event.resultIndex;
+    var transcript = e.results[current][0].transcript;
+    var mobileRepeatBug = (current == 1 && transcript == event.results[0][0].transcript);
+
+  if(!mobileRepeatBug) {
+    noteContent += transcript;
+    notes.val(noteContent);
+  }
 }
 
 $(".start").on('click',function(e){
