@@ -1,9 +1,10 @@
 var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition
 var recognition = new SpeechRecognition();
 recognition.continuous =true;
-recognition.interimResults = true;
-recognition.lang="en-US";
-const notes =document.getElementsByClassName('notes');
+
+const notes =$('.notes');
+const instructions =$(".instructions");
+var noteContent = '';
 
 
 //when recog starts running
@@ -25,9 +26,19 @@ recognition.onresult=function(e){
     notes.textContent +=transcript;
     notes.value =notes.textContent
 }
+
 $(".start").on('click',function(e){
+    if(noteContent.length){
+        noteContent +='';
+    }
     recognition.start()
 })
+
 $(".pause").on('click',function(e){
     recognition.stop();
+    instructions.text = "Voice recognition paused";
+})
+
+notes.on('input',()=>{
+    noteContent =$(this).val();
 })
