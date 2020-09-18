@@ -10,15 +10,17 @@ var noteContent = '';
 //when recog starts running
 
 recognition.onstart=function(){
-    console.log("Speech Recognition is now running")
+    instructions.text("Speech Recognition is now running")
 }
 
 //when user finishes talking;
 recognition.onspeechend=function(){
-    console.log("Speech Recognition has ended")
+    instruction.text("Speech Recognition has ended")
 }
 recognition.onerror=function(e){
-    console.error(e)
+    if(event.error == 'no-speech') {
+    instructions.text('No speech was detected. Try again.');  
+  };
 }
 //when results are returned;
 recognition.onresult=function(e){
@@ -36,9 +38,9 @@ $(".start").on('click',function(e){
 
 $(".pause").on('click',function(e){
     recognition.stop();
-    instructions.text = "Voice recognition paused";
+    instructions.text = ("Voice recognition paused");
 })
 
-notes.on('input',()=>{
+notes.on('input',function(){
     noteContent =$(this).val();
 })
