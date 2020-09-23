@@ -1,5 +1,5 @@
-# speech-recog
-To see the live demo, click here >> https://ealpha072.github.io/speech-recog/ ;
+# https://ealpha072.github.io/speech-recog/
+
 
 This simple speech recognition app is used to take notes through voice recordings
 Techs used:
