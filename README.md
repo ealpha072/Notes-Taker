@@ -1,7 +1,7 @@
 # https://ealpha072.github.io/speech-recog/
 
 
-This simple **speech recognition** app is used to take notes through **voice recording**
+This simple **speech recognition** application is used to take notes through **voice recording**
 Techs used:
 * Bootstrap-for responsive web-design
 * Javascript
