@@ -13,7 +13,6 @@ Things learnt:
 * DOM manipulation with jquery-.text(),.val(),$(this)
 * Speech recognition events...
 
-Things to add:
-1. Enable saving notes.
-1. Notes retreival using local storage. 
+Things to add
+1. Notes retreival and saving using local storage. 
 
