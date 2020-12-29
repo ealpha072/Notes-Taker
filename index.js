@@ -2,14 +2,15 @@ var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition
 var recognition = new SpeechRecognition();
 recognition.continuous =true;
 
-let myNotes = [] 
-
-const notes =document.querySelector('.notes');
-const instructions =document.querySelector(".instructions");
-const startButton = document.querySelector('.start');
-const pauseButton = document.querySelector('.pause');
-const saveNotes = document.querySelector('.save')
-var noteContent = '';
+let myNotes = [] ,
+    notes =document.querySelector('.notes'),
+    instructions =document.querySelector(".instructions"),
+    startButton = document.querySelector('.start'),
+    pauseButton = document.querySelector('.pause'),
+    noteTitle = document.querySelector('.title'),
+    saveNotes = document.querySelector('.save'),
+    myForm = document.getElementsByTagName('form')[0]
+    noteContent = '';
 
 
 //when recog starts running
@@ -41,7 +42,7 @@ recognition.onresult=function(e){
 
 
 startButton.addEventListener('click',(e)=>{
-    if(noteContent.length){
+    if(noteContent.length && noteTitle.length){
         noteContent+='';
     }
     recognition.start();
@@ -61,9 +62,12 @@ notes.addEventListener('input',(e)=>{
 
 saveNotes.addEventListener('click',(e)=>{
     e.preventDefault();
-    let notesToSave = notes.value;
-    myNotes.push(notesToSave)
+    let notesToSave = notes.value,
+        title = noteTitle.value
+    myNotes.push({title:title,note:notesToSave})
+    
     console.log(myNotes)
+    myForm.reset()
 })
 /*
 $(".pause").on('click',function(e){
