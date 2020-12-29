@@ -94,15 +94,15 @@ saveNotes.addEventListener('click',(e)=>{
 
 function render(arr){
     arr.forEach(item=>{
-        /*let tr =  document.createElement('tr')
-        let cut =[];
+        let tr =  document.createElement('tr')
+        /*let cut =[];
         cut.push(item.note);
         cut.split(' ')
         let display = cut[0]*/
 
         let content =`
             <td>${item.title}</td>
-            <td>${display}</td>
+            <td>${item.note[0].toUpperCase()}</td>
             <td>
                 <button class = 'btn btn-primary'>Edit</button>
             </td>
