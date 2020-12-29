@@ -1,25 +1,27 @@
-
-let myNotes = localStorage.getItem('items')
-  ? JSON.parse(localStorage.getItem('items'))
-  : [];
-
-localStorage.setItem('items', JSON.stringify(myNotes))
-const data = JSON.parse(localStorage.getItem('items'))
-console.log(data)
-
-var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition
-var recognition = new SpeechRecognition();
-recognition.continuous =true;
-
+//dom elements
 let notes =document.querySelector('.notes'),
     instructions =document.querySelector(".instructions"),
     startButton = document.querySelector('.start'),
     pauseButton = document.querySelector('.pause'),
     noteTitle = document.querySelector('.title'),
     saveNotes = document.querySelector('.save'),
-    myForm = document.getElementsByTagName('form')[0]
+    myForm = document.getElementsByTagName('form')[0],
+    tbody  =document.querySelector('.usernotes'),
     noteContent = '';
 
+let myNotes = localStorage.getItem('items')
+    ? JSON.parse(localStorage.getItem('items'))
+    : [];
+  
+localStorage.setItem('items', JSON.stringify(myNotes))
+const data = JSON.parse(localStorage.getItem('items'))
+  console.log(data)
+  render(data)
+
+
+var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition
+var recognition = new SpeechRecognition();
+recognition.continuous =true;
 
 //when recog starts running
 
@@ -36,6 +38,7 @@ recognition.onerror=function(e){
     instructions.textContent='No speech was detected. Try again.';
   };
 }
+
 //when results are returned;
 recognition.onresult=function(e){
     var current = e.resultIndex;
@@ -48,7 +51,7 @@ recognition.onresult=function(e){
   }
 }
 
-
+//start button event listener
 startButton.addEventListener('click',(e)=>{
     if(noteContent.length && noteTitle.length){
         noteContent+='';
@@ -56,18 +59,19 @@ startButton.addEventListener('click',(e)=>{
     recognition.start();
 })
 
-
+//pause button event listener
 pauseButton.addEventListener('click',(e)=>{
     recognition.stop();
     instructions.textContent='';
     instructions.textContent = 'Voice recognition paused'
 })
 
+//notes event listener
 notes.addEventListener('input',(e)=>{
     noteContent =this.value
 })
 
-
+//save notes
 saveNotes.addEventListener('click',(e)=>{
     e.preventDefault();
     let notesToSave = notes.value,
@@ -79,12 +83,16 @@ saveNotes.addEventListener('click',(e)=>{
 })
 
 
-/*
-$(".pause").on('click',function(e){
-    recognition.stop();
-    instructions.text = ("Voice recognition paused");
-})
-
-notes.on('input',function(){
-    noteContent =$(this).val();
-})*/
+function render(arr){
+    arr.forEach(item=>{
+        let tr =  document.createElement('tr')
+        let content =`
+            <th scope="row">1</th>
+            <td>${item.title}</td>
+            <td>Otto</td>
+        `
+        tr.innerHTML = content
+        tbody.appendChild(tr)
+    })
+    //tbody.append(tr)
+}
