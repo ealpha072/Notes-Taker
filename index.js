@@ -74,13 +74,18 @@ notes.addEventListener('input',(e)=>{
 //save notes
 saveNotes.addEventListener('click',(e)=>{
     e.preventDefault();
-    let notesToSave = notes.value,
-        title = noteTitle.value
-    myNotes.push({title:title,note:notesToSave})
-    localStorage.setItem('items', JSON.stringify(myNotes))
-    render(myNotes)
-    console.log(myNotes)
-    myForm.reset()
+    if(notes.value === ''){
+        alert('Nothing to save')
+    }else{
+        let notesToSave = notes.value,
+            title = noteTitle.value,
+            timeCretaed =new Date().toLocaleString();
+        myNotes.push({title:title,note:notesToSave,time:timeCretaed})
+        localStorage.setItem('items', JSON.stringify(myNotes))
+        tbody.innerHTML = '';
+        render(myNotes)
+        myForm.reset()
+    }
 })
 
 
@@ -89,13 +94,14 @@ function render(arr){
         let tr =  document.createElement('tr')
         let content =`
             <td>${item.title}</td>
-            <td>Otto</td>
+            <td></td>
             <td>
                 <button class = 'btn btn-primary'>Edit</button>
             </td>
             <td>
                 <button class = 'btn btn-danger'>Danger</button>
             </td>
+            <td>${item.time}</td>
             
         `
         tr.innerHTML = content
