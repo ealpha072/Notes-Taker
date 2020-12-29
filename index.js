@@ -2,10 +2,13 @@ var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition
 var recognition = new SpeechRecognition();
 recognition.continuous =true;
 
+let myNotes = [] 
+
 const notes =document.querySelector('.notes');
 const instructions =document.querySelector(".instructions");
 const startButton = document.querySelector('.start');
-const pauseButton = documnet.querySelector('.pause');
+const pauseButton = document.querySelector('.pause');
+const saveNotes = document.querySelector('.save')
 var noteContent = '';
 
 
@@ -52,9 +55,16 @@ pauseButton.addEventListener('click',(e)=>{
 })
 
 notes.addEventListener('input',(e)=>{
-    noteContent =noteContent.value
+    noteContent =this.value
 })
 
+
+saveNotes.addEventListener('click',(e)=>{
+    e.preventDefault();
+    let notesToSave = notes.value;
+    myNotes.push(notesToSave)
+    console.log(myNotes)
+})
 /*
 $(".pause").on('click',function(e){
     recognition.stop();
