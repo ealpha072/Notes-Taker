@@ -70,7 +70,10 @@ pauseButton.addEventListener('click',(e)=>{
 notes.addEventListener('input',(e)=>{
     noteContent =this.value
 })
+//splice notes
+function spliceNotes(str){
 
+}
 //save notes
 saveNotes.addEventListener('click',(e)=>{
     e.preventDefault();
@@ -91,10 +94,15 @@ saveNotes.addEventListener('click',(e)=>{
 
 function render(arr){
     arr.forEach(item=>{
-        let tr =  document.createElement('tr')
+        /*let tr =  document.createElement('tr')
+        let cut =[];
+        cut.push(item.note);
+        cut.split(' ')
+        let display = cut[0]*/
+
         let content =`
             <td>${item.title}</td>
-            <td></td>
+            <td>${display}</td>
             <td>
                 <button class = 'btn btn-primary'>Edit</button>
             </td>
