@@ -1,9 +1,17 @@
+
+let myNotes = localStorage.getItem('items')
+  ? JSON.parse(localStorage.getItem('items'))
+  : [];
+
+localStorage.setItem('items', JSON.stringify(myNotes))
+const data = JSON.parse(localStorage.getItem('items'))
+console.log(data)
+
 var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition
 var recognition = new SpeechRecognition();
 recognition.continuous =true;
 
-let myNotes = [] ,
-    notes =document.querySelector('.notes'),
+let notes =document.querySelector('.notes'),
     instructions =document.querySelector(".instructions"),
     startButton = document.querySelector('.start'),
     pauseButton = document.querySelector('.pause'),
@@ -65,10 +73,12 @@ saveNotes.addEventListener('click',(e)=>{
     let notesToSave = notes.value,
         title = noteTitle.value
     myNotes.push({title:title,note:notesToSave})
-    
+    localStorage.setItem('items', JSON.stringify(myNotes))
     console.log(myNotes)
     myForm.reset()
 })
+
+
 /*
 $(".pause").on('click',function(e){
     recognition.stop();
