@@ -78,6 +78,7 @@ saveNotes.addEventListener('click',(e)=>{
         title = noteTitle.value
     myNotes.push({title:title,note:notesToSave})
     localStorage.setItem('items', JSON.stringify(myNotes))
+    render(myNotes)
     console.log(myNotes)
     myForm.reset()
 })
@@ -87,9 +88,15 @@ function render(arr){
     arr.forEach(item=>{
         let tr =  document.createElement('tr')
         let content =`
-            <th scope="row">1</th>
             <td>${item.title}</td>
             <td>Otto</td>
+            <td>
+                <button class = 'btn btn-primary'>Edit</button>
+            </td>
+            <td>
+                <button class = 'btn btn-danger'>Danger</button>
+            </td>
+            
         `
         tr.innerHTML = content
         tbody.appendChild(tr)
