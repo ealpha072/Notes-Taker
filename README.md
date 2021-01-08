@@ -9,7 +9,6 @@ Techs used:
 
 Things learnt:
 * Speech to text recognition with webspecch API
-* DOM manipulation with jquery-.text(),.val(),$(this)
 * Speech recognition events...
 
 
