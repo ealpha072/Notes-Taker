@@ -3,7 +3,7 @@
 
 This simple **speech recognition** application is used to take notes through **voice recording**
 Techs used:
-* Bootstrap-for responsive web-design
+* Bootstrap
 * Javascript
 * HTML
 
