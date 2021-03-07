@@ -43,7 +43,10 @@ recognition.onresult = function(e) {
 //app buttons and input
 
 $(".start").on('click', function(e) {
-    ///omitt
+
+    if (noteContent.length) {
+        noteContent += ' ';
+    }
     recognition.start();
 })
 
@@ -55,6 +58,7 @@ $(".pause").on('click', function(e) {
 notes.on('input', function() {
     noteContent = $this.val();
 })
+
 
 $(".save").on('click', function(e) {
     recognition.stop();
