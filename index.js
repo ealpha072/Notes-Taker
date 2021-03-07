@@ -1,4 +1,5 @@
 //dom elements
+
 let notes = document.querySelector('.notes'),
     instructions = document.querySelector(".instructions"),
     startButton = document.querySelector('.start'),
@@ -8,6 +9,8 @@ let notes = document.querySelector('.notes'),
     myForm = document.getElementsByTagName('form')[0],
     tbody = document.querySelector('.usernotes'),
     noteContent = '';
+
+
 
 let myNotes = localStorage.getItem('items') ?
     JSON.parse(localStorage.getItem('items')) : [];
@@ -24,36 +27,23 @@ recognition.continuous = true;
 
 //when recog starts running
 
-/*recognition.onstart = function() {
-    instructions.textContent = "Speech Recognition is now running";
-}*/
-
 recognition.onstart = function() {
-    instructions.text('Speech Recognition is now running');
+    instructions.textContent = "Speech Recognition is now running";
 }
-
 
 //when user finishes talking;
 
-/*recognition.onspeechend = function() {
-instructions.textContent = "Speech Recognition has ended";
-}*/
-
 recognition.onspeechend = function() {
-    instructions.text("Speech Recognition has ended");
+    instructions.textContent = "Speech Recognition has ended";
 }
 
-/*recognition.onerror = function(e) {
-if (e.error == 'no-speech') {
-    instructions.textContent = 'No speech was detected. Try again.';
-};
-}*/
 
 recognition.onerror = function(e) {
     if (e.error == 'no-speech') {
-        instructions.text('No speech was detected. Try again.');
+        instructions.textContent = 'No speech was detected. Try again.';
     };
 }
+
 
 //when results are returned;
 
@@ -72,27 +62,19 @@ recognition.onresult = function(e) {
 
 //start button event listener
 
-/*startButton.addEventListener('click', (e) => {
+startButton.addEventListener('click', (e) => {
     if (noteContent.length && noteTitle.length) {
         noteContent += '';
     }
-    recognition.start();
-})*/
-
-$(".start").on('click', function(e) {
     recognition.start();
 })
 
 //pause button event listener
 
-/*pauseButton.addEventListener('click', (e) => {
+pauseButton.addEventListener('click', (e) => {
     recognition.stop();
     instructions.textContent = '';
     instructions.textContent = 'Voice recognition paused'
-})*/
-
-$('.pause').on('click', function(e) {
-    recognition.stop();
 })
 
 //notes event listener
@@ -147,16 +129,4 @@ function render(arr) {
             tbody.appendChild(tr)
         })
         //tbody.append(tr)
-}
-
-function readOutLoud(message) {
-    var speech = new SpeechSynthesisUtterance();
-
-    //set text and voice attributes
-    speech.text = message;
-    speech.volume = 1;
-    speech.rate = 1;
-    speech.pitch = 1;
-
-    window.speechSynthesis.speak(speech)
 }
