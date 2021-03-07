@@ -39,3 +39,47 @@ recognition.onresult = function(e) {
         notes.val(noteContent);
     }
 }
+
+//app buttons and input
+
+$(".start").on('click', function(e) {
+    ///omitt
+    recognition.start();
+})
+
+$(".pause").on('click', function(e) {
+    recognition.stop();
+    instructions.text("Voice regnition paused");
+})
+
+notes.on('input', function() {
+    noteContent = $this.val();
+})
+
+$(".save").on('click', function(e) {
+    recognition.stop();
+    if (!noteContent.length) {
+        instructions.text("Cant save empty notes");
+    } else {
+        //save to local strorage
+
+        //reset variables and ui
+        noteContent = "";
+        notes.val("");
+        instructions.text("Notes saved");
+    }
+})
+
+//speech synthesis
+
+function readOutLoud(message) {
+    var speech = new SpeechSynthesisUtterance();
+
+    // Set the text and voice attributes.
+    speech.text = message;
+    speech.volume = 1;
+    speech.rate = 1;
+    speech.pitch = 1;
+
+    window.speechSynthesis.speak(speech);
+}
