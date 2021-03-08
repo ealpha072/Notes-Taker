@@ -8,6 +8,7 @@ try {
 
 //dom elements
 var notes = $(".notes");
+var title = $(".title");
 var instructions = $(".instructions");
 var noteContent = "";
 var tbody = $('.usernotes');
@@ -70,21 +71,22 @@ notes.on('input', function() {
 
 $(".save").on('click', function(e) {
     recognition.stop();
-    if (notes.value === '') {
+    if (!notes.val() || !title.val()) {
         instructions.text("Cant save empty notes");
     } else {
         //save to local strorage
         let notesToSave = notes.val(),
-            timeCreated = new Date().toLocaleString();
-        myNotes.push({ note: notesToSave, time: timeCreated });
+            noteTitle = title.val();
+        timeCreated = new Date().toLocaleString();
+        myNotes.push({ note: notesToSave, title: noteTitle, time: timeCreated });
         localStorage.setItem('items', JSON.stringify(myNotes));
         //reset variables and ui
         noteContent = " ";
         notes.val(" ");
+        title.val(" ");
         instructions.text("Notes saved");
         tbody.html(" ");
         render(myNotes);
-
     }
 })
 
@@ -109,7 +111,7 @@ function render(arr) {
             let tr = document.createElement('tr')
 
             let content = `
-            <td>${item.note[0].toUpperCase()}</td>
+            <td>${item.title}</td>
             <td>
                 <button class = 'btn btn-primary'>Edit</button>
             </td>
