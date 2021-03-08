@@ -10,6 +10,14 @@ try {
 var notes = $(".notes");
 var instructions = $(".instructions");
 var noteContent = "";
+var tbody = $('.usernotes');
+
+let myNotes = localStorage.getItem('items') ? JSON.parse(localStorage.getItem('items')) : [];
+
+localStorage.setItem('items', JSON.stringify(myNotes));
+const data = JSON.parse(localStorage.getItem('items'));
+//console.log(data);
+render(data);
 
 recognition.continuous = true;
 
@@ -56,21 +64,27 @@ $(".pause").on('click', function(e) {
 })
 
 notes.on('input', function() {
-    noteContent = $this.val();
+    noteContent = $(this).val();
 })
 
 
 $(".save").on('click', function(e) {
     recognition.stop();
-    if (!noteContent.length) {
+    if (notes.value === '') {
         instructions.text("Cant save empty notes");
     } else {
         //save to local strorage
-
+        let notesToSave = notes.val(),
+            timeCreated = new Date().toLocaleString();
+        myNotes.push({ note: notesToSave, time: timeCreated });
+        localStorage.setItem('items', JSON.stringify(myNotes));
         //reset variables and ui
-        noteContent = "";
-        notes.val("");
+        noteContent = " ";
+        notes.val(" ");
         instructions.text("Notes saved");
+        tbody.html(" ");
+        render(myNotes);
+
     }
 })
 
@@ -87,3 +101,26 @@ function readOutLoud(message) {
 
     window.speechSynthesis.speak(speech);
 }
+
+
+///render function
+function render(arr) {
+    arr.forEach(item => {
+            let tr = document.createElement('tr')
+
+            let content = `
+            <td>${item.note[0].toUpperCase()}</td>
+            <td>
+                <button class = 'btn btn-primary'>Edit</button>
+            </td>
+            <td>
+                <button class = 'btn btn-danger'>Delete</button>
+            </td>
+            <td>${item.time}</td>`
+            tr.innerHTML = content
+            tbody.append(tr)
+        })
+        //tbody.append(tr)
+}
+
+//tbody.append(tr)
