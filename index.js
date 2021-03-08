@@ -12,8 +12,7 @@ let notes = document.querySelector('.notes'),
 
 
 
-let myNotes = localStorage.getItem('items') ?
-    JSON.parse(localStorage.getItem('items')) : [];
+let myNotes = localStorage.getItem('items') ? JSON.parse(localStorage.getItem('items')) : [];
 
 localStorage.setItem('items', JSON.stringify(myNotes))
 const data = JSON.parse(localStorage.getItem('items'))
