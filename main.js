@@ -27,7 +27,7 @@ recognition.onstart = function() {
 }
 
 recognition.onspeechend = function() {
-    instructions.text("Long pause detected; voice recognition stoped");
+    instructions.text("Speech recognition paused");
 }
 
 recognition.onerror = function(e) {
