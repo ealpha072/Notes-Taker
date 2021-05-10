@@ -4,7 +4,7 @@
 This simple **speech recognition** application is used to take notes through **voice recording**. Saved notes are displayed in a table and saved to local storage.
 
 ##Techs used:
-* Bootstrap -for page stylings
+* Bootstrap -for page styling
 * Javascript -for dynamic changes 
 * HTML -for web structure 
 * jquery -selecting and event listeners
