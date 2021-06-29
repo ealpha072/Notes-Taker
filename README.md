@@ -1,7 +1,7 @@
 # https://ealpha072.github.io/speech-recog/
 
 ## About
-This simple **speech recognition** application is used to take notes through **voice recording**. Saved notes are displayed in a table and saved to local storage in the user device.
+This simple **speech recognition** web application is used to take notes through **voice recording**. Saved notes are displayed in a table and saved to local storage in the user device.
 
 ##Techs used:
 * Bootstrap -for page styling
@@ -11,8 +11,8 @@ This simple **speech recognition** application is used to take notes through **v
 
 Things learnt:
 * Speech to text recognition with webspeech API
-* Speech recognition events
-* Jquery selections 
+* Speech recognition and synthesis events
+* Jquery selections for Dom elements
 * Local storage- setting and getting items.
 
 
