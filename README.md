@@ -13,6 +13,6 @@ Things learnt:
 * Jquery selections for Dom elements
 * Local storage- setting and getting items.
 
-Link to project --> https://ealpha072.github.io/speech-recog/
+Link to project --> <a href = "https://ealpha072.github.io/speech-recog/" target = "_blank"> here </a>
 
 
