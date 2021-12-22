@@ -4,7 +4,6 @@ This simple **speech recognition** web application can be used to take notes thr
 ##Techs used:
 * `Bootstrap` -for page styling
 * `Javascript` -for dynamic changes of webpage
-* `HTML` -for web structure 
 * `jquery` -selecting DOM elements and event listeners additions
 
 Things learnt:
