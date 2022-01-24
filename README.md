@@ -3,8 +3,8 @@ This simple **speech recognition** web application can be used to take notes thr
 
 
 Things learnt:
-* Speech to text recognition with webspeech API
-* Speech recognition and synthesis events
+* Speech to text recognition with webspeech API.
+* Speech recognition and synthesis events.
 
 Link to project --> https://ealpha072.github.io/Notes-Taker/
 
